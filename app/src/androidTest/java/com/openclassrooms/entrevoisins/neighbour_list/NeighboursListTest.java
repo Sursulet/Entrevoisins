@@ -76,7 +76,7 @@ public class NeighboursListTest {
     }
 
     /**
-     * When we click on an item, Details activity show
+     * When we click on an item, Details activity shown
      */
     @Test
     public void Details_isDisplay() {
@@ -87,7 +87,7 @@ public class NeighboursListTest {
     }
 
     /**
-     * When we click on an item, Details activity show user name
+     * When we click on an item, neighbour name is correct
      */
     @Test
     public void DetailsName_isDisplay() {
@@ -102,7 +102,7 @@ public class NeighboursListTest {
     }
 
     /**
-     * When we click on an item, Details activity show
+     * Check favorite list contain only favorite neighbour
      */
     @Test
     public void checkFavoritesList() {
