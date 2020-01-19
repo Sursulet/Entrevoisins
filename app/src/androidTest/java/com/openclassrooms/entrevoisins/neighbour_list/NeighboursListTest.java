@@ -80,8 +80,9 @@ public class NeighboursListTest {
      */
     @Test
     public void Details_isDisplay() {
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(matches(isDisplayed()));
-        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+                .check(matches(isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(ViewMatchers.withId(R.id.details_activity)).check(matches(isDisplayed()));
     }
 
@@ -90,11 +91,14 @@ public class NeighboursListTest {
      */
     @Test
     public void DetailsName_isDisplay() {
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(matches(isDisplayed()));
-        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+                .check(matches(isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
         onView(ViewMatchers.withId(R.id.details_activity)).check(matches(isDisplayed()));
-        onView(ViewMatchers.withId(R.id.details_name)).check(matches(isDisplayed())).check(matches(withText("Caroline")));
+        onView(ViewMatchers.withId(R.id.details_name))
+                .check(matches(isDisplayed()))
+                .check(matches(withText("Caroline")));
     }
 
     /**

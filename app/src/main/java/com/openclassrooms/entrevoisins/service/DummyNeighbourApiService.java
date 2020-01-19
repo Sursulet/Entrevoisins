@@ -1,8 +1,5 @@
 package com.openclassrooms.entrevoisins.service;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import java.util.ArrayList;
@@ -14,7 +11,6 @@ import java.util.List;
 public class DummyNeighbourApiService implements  NeighbourApiService {
 
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
-    private List<Neighbour> favorites;
 
 
     /**
@@ -38,7 +34,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
      */
     @Override
     public List<Neighbour> getFavorites() {
-        favorites = new ArrayList<>();
+        List<Neighbour> favorites = new ArrayList<>();
 
         for(Neighbour n : neighbours) {
             if(n.getFavorite()) favorites.add(n);

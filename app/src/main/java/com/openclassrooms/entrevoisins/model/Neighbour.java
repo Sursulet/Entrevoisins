@@ -74,9 +74,7 @@ public class Neighbour implements Parcelable {
         return avatarUrl;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
+    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
 
     public Boolean getFavorite() { return favorite; }
 

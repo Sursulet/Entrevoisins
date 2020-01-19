@@ -28,10 +28,6 @@ public class FavoriteFragment extends Fragment {
     private List<Neighbour> mFavorites;
     private RecyclerView mRecyclerView;
 
-    public FavoriteFragment() {
-        // Required empty public constructor
-    }
-
     public static FavoriteFragment newInstance() {
         FavoriteFragment fragment = new FavoriteFragment();
         return fragment;
