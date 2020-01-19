@@ -16,9 +16,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.IsNull.notNullValue;
 
@@ -67,5 +73,49 @@ public class NeighboursListTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
+    }
+
+    /**
+     * When we click on an item, Details activity show
+     */
+    @Test
+    public void Details_isDisplay() {
+        onView(ViewMatchers.withId(R.id.list_neighbours)).check(matches(isDisplayed()));
+        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(ViewMatchers.withId(R.id.details_activity)).check(matches(isDisplayed()));
+    }
+
+    /**
+     * When we click on an item, Details activity show user name
+     */
+    @Test
+    public void DetailsName_isDisplay() {
+        onView(ViewMatchers.withId(R.id.list_neighbours)).check(matches(isDisplayed()));
+        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        onView(ViewMatchers.withId(R.id.details_activity)).check(matches(isDisplayed()));
+        onView(ViewMatchers.withId(R.id.details_name)).check(matches(isDisplayed())).check(matches(withText("Caroline")));
+    }
+
+    /**
+     * When we click on an item, Details activity show
+     */
+    @Test
+    public void checkFavoritesList() {
+        onView(withContentDescription("Favorites")).perform(click());
+        onView(withId(R.id.list_favorites)).check(withItemCount(0));
+
+        onView(withContentDescription("My neighbours")).perform(click());
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+                .check(matches(isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        onView(ViewMatchers.withId(R.id.details_activity)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab)).perform(click());
+        pressBack();
+
+        onView(withContentDescription("Favorites")).perform(click());
+        onView(withId(R.id.list_favorites)).check(withItemCount(1));
+
     }
 }
